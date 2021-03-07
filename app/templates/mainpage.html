@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<div align="center">
+<h1>一覧表示</h1>
+</div>
+
+<form action="/disp_customer" method="POST">
+<table border="2" align="center">
+    <tr>
+        <th><h3>ID</h3></th>
+        <th><h3>会社名</h3></th>
+        <th><h3>登録日</h3></th>
+        <th><h3></h3></th>
+    </tr>
+    {% for co in cont %}
+        <tr>
+            <th><h3>{{ co.customer_id }}</h3></th>
+            <th><h3>{{ co.customer }}</h3></th>
+            <th><h3>{{ co.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</h3></th>
+                <th><button type="submit" name="detail" value={{co.customer_id}}>詳細</button></th>
+        </tr>
+    {% endfor %}
+</table>
+</form>
+{% endblock %}

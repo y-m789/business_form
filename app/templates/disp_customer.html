@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<div align="center">
+<h1>{{cont.customer}}の詳細情報</h1>
+</div>
+<table width="40%" align="center">
+    <tr>
+        <th align="right">取引先会社名</th>
+        <td align="center">{{ cont.customer }}</td>
+        <th align="right">登録日</th>
+        <td align="center">{{ cont.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+    </tr>
+    <tr>
+        <th align="right">取引先部署名</th>
+        <td align="center">{{ cont.customer_department }}</td>
+    </tr>
+    <tr>
+        <th align="right">取引先担当者名</th>
+        <td align="center">{{ cont.customer_name }}</td>
+    </tr>
+    <tr>
+        <th align="right">件名</th>
+        <td align="center">{{ cont.title }}</td>
+    </tr>
+    </table>
+    <br>
+    <table width="40%" align="center">
+    <tr>
+        <th>品目</th>
+        <th>数量</th>
+        <th>単位</th>
+        <th>単価</th>
+        <th>税率(%)</th>
+    </tr>
+    {% for i in range(num_item) %}
+    {% set item = "item" ~ (i+1) %}
+    {% set volume = "volume" ~ (i+1) %}
+    {% set unit = "unit" ~ (i+1) %}
+    {% set price = "price" ~ (i+1) %}
+    {% set tax = "tax" ~ (i+1) %}
+    <tr>
+        <td width="10%" align="center">{{ cont[item] }}</td>
+        <td width="10%" align="center">{{ cont[volume] }}</td>
+        <td width="10%" align="center">{{ cont[unit] }}</td>
+        <td width="10%" align="center">{{ cont[price] }}</td>
+        <td width="10%" align="center">{{ cont[tax] }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    <br>
+    <table width="30%" align="center">
+    <tr>
+        <th>小計</th>
+        <td>{{ subtotal }}</td>
+    </tr>
+    <tr>
+        <th>消費税</th>
+        <td>{{ tax }}</td>
+    </tr>
+    <tr>
+        <th>合計金額</th>
+        <td>{{ total }}</td>
+    </tr>
+    </table>
+    <br>
+    <table width="40%" align="center">
+    <tr>
+        <th align="right">見積書発行日</th>
+        <td align="center">{{ cont.timestamp_estimate }}</td>
+        <th align="right">見積書有効期限</th>
+        <td align="center">{{ cont.limit_estimate }}</td>
+    </tr>
+    <tr>
+        <th align="right">請求書発行日</th>
+        <td align="center">{{ cont.timestamp_bill }}</td>
+        <th align="right">支払期限</th>
+        <td align="center">{{ cont.limit_bill }}</td>
+    </tr>
+    <tr>
+        <th align="right">納品書発行日</th>
+        <td align="center">{{ cont.timestamp_deliver }}</td>
+        <th align="right">納品日</th>
+        <td align="center">{{ cont.limit_deliver }}</td>
+    </tr>
+</table>
+<br>
+<div align="center">
+
+<form action="/edit_customer" method="POST">
+<button type="submit" name="edit" style="width:10%;font-size:30px;" value={{cont.customer_id}}>編集</button>
+<button type="button" name="back" onclick="root()" style="width:10%;font-size:30px;">戻る</button>
+</form>
+<br>
+<form action="/create" method="POST">
+    <button type="submit" name="estimate" style="width:10%;font-size:25px;" value={{cont.customer_id}}>見積書</button>
+    <button type="submit" name="bill" style="width:10%;font-size:25px;" value={{cont.customer_id}}>請求書</button>
+    <button type="submit" name="deliver" style="width:10%;font-size:25px;" value={{cont.customer_id}}>納品書</button>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Flask sample</title>
+        <style>body {padding: 10px;}</style>
+    </head>
+    <body>
+        <p><h3>メニュー</h3></p>
+        <p><h3><a href="/">トップページ</a></h3></p>
+        <p><h3><a href="/input_base">基本情報登録</a></h3></p>
+        <p><h3><a href="/input_customer">取引先入力</a></h3></p>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

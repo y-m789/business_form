@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<html>
+<head>
+</head>
+<body>
+    <div align="center">
+    <h1>取引先情報入力</h1>
+    <form action="/input_customer" method="POST">
+        <table align="center">
+        <tr>
+            <th><label for="customer">会社名：</label></th>
+            <td><input type="text" id="customer" name="customer"
+                       style="width:150%;height:20%;font-size:larger;"
+                       placeholder="会社名を入力してください"></td>
+        </tr>
+        <tr>
+            <th><label for="customer_department">部署名：</label></th>
+            <td><input type="text" id="customer_department" name="customer_department"
+                       style="width:150%;height:20%;font-size:larger;"
+                       placeholder="部署名を入力してください"></td>
+        </tr>
+        <tr>
+            <th><label for="customer_name">担当者名：</label></th>
+            <td><input type="text" id="customer_name" name="customer_name"
+                       style="width:150%;height:20%;font-size:larger;"
+                       placeholder="担当者名を入力してください"></td>
+        </tr>
+        <tr>
+            <th><label for="title">件名：</label></th>
+            <td><input type="text" id="title" name="title"
+                       style="width:150%;height:20%;font-size:larger;"
+                       placeholder="件名を入力してください"></td>
+        </tr>
+        </table>
+        <br>
+        <table width="60%" align="center">
+        <tr>
+            <th>品目</th>
+            <th>数量</th>
+            <th>単位</th>
+            <th>単価</th>
+            <th>税率</th>
+        </tr>
+        {% for i in range(num_item) %}
+        <tr>
+            <td><input type="text" id="item{{i+1}}" name="item{{i+1}}"
+                       style="width:98%;height:20%;font-size:larger;"
+                       placeholder="品目{{i+1}}を入力してください"></td>
+            <td width="10%"><input type="number" name="volume{{i+1}}"
+                       style="width:90%;font-size:larger;"
+                       placeholder="数量{{i+1}}"></td>
+            <td width="10%"><input type="text" name="unit{{i+1}}"
+                       style="width:90%;height:60%;font-size:larger;"
+                   placeholder="単位{{i+1}}"></td>
+            <td width="20%"><input type="number" name="price{{i+1}}"
+                       style="width:90%;height:60%;font-size:larger;"
+                   placeholder="単価{{i+1}}"></td>
+            <td width="10%"><input type="number" name="tax{{i+1}}"
+                       style="width:90%;height:60%;font-size:larger;"
+                   placeholder="税率{{i+1}}"></td>
+        </tr>
+        {% endfor %}
+        </table>
+        <br>
+        <input type="submit" name="registry" style="width:30%;font-size:30px;" value="登録">
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

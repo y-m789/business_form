@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<html>
+<head>
+</head>
+<body>
+    <div align="center">
+    <h1>{{title}}発行情報入力</h1>
+    <form action="/publish" method="POST">
+        <table align="center">
+        <tr>
+            <th><label for="num">{{title}}番号：</label></th>
+            <th><input type="text" id="num" name="num"
+                       style="width:100%;height:30px;font-size:larger;"
+                       placeholder="{{title}}番号を入力してください"></th>
+        </tr>
+        <tr>
+            <th><label for="timestamp">{{title}}発行日：</label></th>
+            <th><input type="date" id="timestamp" name="timestamp"
+                       style="width:100%;height:30px;font-size:larger;"
+                       placeholder="{{title}}発行日を入力してください"></th>
+        </tr>
+        {% if title == "請求書" %}
+        <tr>
+            <th><label for="limit">支払期限：</label></th>
+            <th><input type="date" id="limit" name="limit"
+                       style="width:100%;height:30px;font-size:larger;"
+                       placeholder="支払期限を入力してください"></th>
+        </tr>
+        {% endif %}
+        </table>
+        <br>
+        {% if title == "見積書" %}
+            <button type="submit" name="publish_estimate_csv" style="width:10%;font-size:30px;" value={{cont.customer_id}}>発行 (CSV)</button>
+            <button type="submit" name="publish_estimate_pdf" style="width:10%;font-size:30px;" value={{cont.customer_id}}>発行 (PDF)</button>
+        {% endif %}
+        {% if title == "請求書" %}
+            <button type="submit" name="publish_bill_csv" style="width:10%;font-size:30px;" value={{cont.customer_id}}>発行 (CSV)</button>
+            <button type="submit" name="publish_bill_pdf" style="width:10%;font-size:30px;" value={{cont.customer_id}}>発行 (PDF)</button>
+        {% endif %}
+        {% if title == "納品書" %}
+            <button type="submit" name="publish_deliver_csv" style="width:10%;font-size:30px;" value={{cont.customer_id}}>発行 (CSV)</button>
+            <button type="submit" name="publish_deliver_pdf" style="width:10%;font-size:30px;" value={{cont.customer_id}}>発行 (PDF)</button>
+        {% endif %}
+        <button type="button" name="back"  onclick="history.back()" style="width:10%;font-size:30px;">戻る</button>
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

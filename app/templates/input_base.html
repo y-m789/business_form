@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<html>
+<head>
+</head>
+<body>
+    <div align="center">
+    <h1>基本情報入力</h1>
+    <form action="/input_base" method="POST">
+        <table align="center">
+        <tr>
+            <th><label for="name">代表者名：</label></th>
+            <th><input type="text" id="name" name="name" style="width:150%;height:30px;font-size:larger;"
+                       placeholder="名前を入力してください" value={{base.name}}></th>
+        <tr>
+            <th><label for="company">会社名：</label></th>
+            <th><input type="text" id="company" name="company" style="width:150%;height:30px;font-size:larger;"
+                       placeholder="会社名を入力してください" value={{base.company}}></th>
+        </tr>
+        <tr>
+            <th><label for="name">部署名：</label></th>
+            <th><input type="text" id="department" name="department" style="width:150%;height:30px;font-size:larger;"
+                       placeholder="部署名を入力してください" value={{base.department}}></th>
+        </tr>
+        <tr>
+            <th><label for="post">郵便番号：</label></th>
+            <th><input type="text" id="post" name="post" style="width:150%;height:30px;font-size:larger;"
+                       placeholder="郵便番号を入力してください" value={{base.post}}></th>
+        </tr>
+        <tr>
+            <th><label for="address">住所：</label></th>
+            <th><input type="text" id="address" name="address" style="width:150%;height:30px;font-size:larger;"
+                       placeholder="住所を入力してください" value={{base.address}}></th>
+        </tr>
+        <tr>
+            <th><label for="tel">電話番号：</label></th>
+            <th><input type="tel" id="tel" name="tel" style="width:150%;height:30px;font-size:larger;"
+                   placeholder="電話番号を入力してください" value={{base.tel}}></th>
+        </tr>
+        <tr>
+            <th><label for="email">E-mail：</label></th>
+            <th><input type="email" id="email" name="email" style="width:150%;height:30px;font-size:larger;"
+                   placeholder="E-mailを入力してください" value={{base.email}}></th>
+        </tr>
+        <tr>
+            <th><label for="bank">振込先：</label></th>
+            <th><textarea id="bank" name="bank" style="width:150%;height:80px;font-size:larger;">{{base.bank}}</textarea></th>
+        </tr>
+        <tr>
+            <th><label for="memo_estimate">見積書備考：</label></th>
+            <th><textarea id="memo_estimate" name="memo_estimate" style="width:150%;height:80px;font-size:larger;">{{base.memo_estimate}}</textarea></th>
+        </tr>
+        <tr>
+            <th><label for="memo_bill">請求書備考：</label></th>
+            <th><textarea id="memo_bill" name="memo_bill" style="width:150%;height:80px;font-size:larger;">{{base.memo_bill}}</textarea></th>
+        </tr>
+        <tr>
+            <th><label for="memo_deliver">納品書備考：</label></th>
+            <th><textarea id="memo_deliver" name="memo_deliver" style="width:150%;height:80px;font-size:larger;">{{base.memo_deliver}}</textarea></th>
+        </tr>
+        </table>
+        <br>
+        <input type="submit" name="registry" style="width:30%;font-size:30px;" value="登録">
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}
